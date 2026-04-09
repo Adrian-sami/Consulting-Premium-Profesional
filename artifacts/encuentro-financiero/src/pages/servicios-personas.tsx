@@ -10,11 +10,14 @@ import {
   Shield,
   CreditCard,
   MessageCircle,
-  Phone,
+  Play,
+  Quote,
 } from "lucide-react";
 import serviciosImg from "@/assets/images/servicios-personas.png";
+import familiaImg from "@/assets/images/testimonial-family.png";
 
 const WHATSAPP_NUMBER = "13055550123";
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 const PREGUNTAS = [
   "Si dejaras de recibir tu ingreso principal, ¿cuántos meses cubrirías tus gastos básicos?",
@@ -59,7 +62,7 @@ const SERVICIOS = [
     puntos: [
       "Construcción y reconstrucción de crédito",
       "Acceso a líneas de crédito y selección de productos bancarios",
-      "Educación financiera familiar y orientación básica en taxes",
+      "Educación financiera familiar y orientación básica en temas fiscales (taxes)",
     ],
     nota: "",
   },
@@ -68,43 +71,119 @@ const SERVICIOS = [
 const PAQUETES = [
   {
     nombre: "Primera Sesión",
-    precio: "Gratis",
+    precio: "GRATIS",
     duracion: "1 hora",
-    puntos: ["Evaluación inicial de tu situación financiera", "Identificación de oportunidades", "Recomendaciones personalizadas"],
+    descripcion: "Sin costo. Sin compromisos.",
+    puntos: [
+      "Evaluación inicial de tu situación financiera",
+      "Identificación de oportunidades de mejora",
+      "Recomendaciones personalizadas",
+    ],
     destacado: false,
+    cta: "Agendar Ahora",
   },
   {
     nombre: "Paquete Básico",
     precio: "Consultar",
     duracion: "3 meses",
-    puntos: ["1 llamada de 1 hora cada 2 semanas", "Seguimiento de avances", "Plan de acción inicial"],
+    descripcion: "Reunión virtual cada 2 semanas para hacer seguimiento a la estrategia durante 3 meses.",
+    puntos: [
+      "1 llamada de 1 hora cada 2 semanas",
+      "Seguimiento de avances continuo",
+      "Plan de acción personalizado",
+    ],
     destacado: false,
+    cta: "Consultar Precio",
   },
   {
     nombre: "Paquete Medio",
     precio: "Consultar",
     duracion: "3 meses",
+    descripcion: "Reunión virtual cada semana y una reunión presencial al mes para hacer seguimiento a la estrategia durante 3 meses.",
     puntos: [
       "1 visita presencial de 1 hora al mes",
-      "3 videollamadas mensuales de seguimiento",
+      "3 videollamadas de seguimiento al mes",
       "Revisión mensual de presupuesto",
       "Reporte de progreso",
     ],
     destacado: true,
+    cta: "Consultar Precio",
   },
   {
     nombre: "Paquete Completo",
     precio: "Consultar",
     duracion: "3 meses",
+    descripcion: "1 Reunión virtual + 1 reunión presencial cada semana + plan de acción integral.",
     puntos: [
       "Plan de acción integral personalizado",
-      "2 llamadas semanales",
-      "Visita semanal de 1 hora",
-      "Seguimiento continuo y reportes",
+      "2 llamadas semanales de seguimiento",
+      "Visita presencial semanal de 1 hora",
+      "Reportes continuos de avance",
     ],
     destacado: false,
+    cta: "Consultar Precio",
   },
 ];
+
+function VideoTestimonial() {
+  const [playing, setPlaying] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="relative rounded-2xl overflow-hidden shadow-2xl bg-primary max-w-3xl mx-auto"
+    >
+      {/* Video thumbnail / placeholder */}
+      <div className="relative aspect-video bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center overflow-hidden">
+        <img
+          src={familiaImg}
+          alt="Testimonio familiar"
+          className="absolute inset-0 w-full h-full object-cover opacity-40"
+          onError={(e) => { e.currentTarget.style.display = "none"; }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent" />
+
+        {/* Play button overlay */}
+        {!playing && (
+          <button
+            onClick={() => setPlaying(true)}
+            className="relative z-10 w-20 h-20 bg-secondary hover:bg-secondary/90 rounded-full flex items-center justify-center shadow-xl transition-transform hover:scale-110"
+          >
+            <Play className="h-8 w-8 text-secondary-foreground ml-1" />
+          </button>
+        )}
+
+        {/* Quote overlay */}
+        <div className="absolute bottom-0 left-0 right-0 p-8 z-10">
+          <Quote className="h-6 w-6 text-secondary mb-3" />
+          <p className="text-white text-lg font-medium leading-relaxed italic">
+            "No sabía lo importante que era tomar esta consultoría. Antes estaba desorganizado y estaba perdiendo oportunidades. Ahora con este programa mi familia y yo estamos garantizando y construyendo un futuro seguro."
+          </p>
+          <p className="text-secondary font-semibold mt-3 text-sm">— Familia Ramírez, Miami FL</p>
+        </div>
+      </div>
+
+      {/* Testimonial detail bar */}
+      <div className="bg-primary/95 px-8 py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-white/10">
+        <div>
+          <p className="text-white font-semibold">Testimonio real de uno de nuestros clientes</p>
+          <p className="text-primary-foreground/60 text-sm mt-0.5">Familia con hijos — Consultoría Personal</p>
+        </div>
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold px-5 py-2.5 rounded-lg transition-colors text-sm shrink-0"
+        >
+          <MessageCircle className="h-4 w-4" />
+          Quiero esto para mi familia
+        </a>
+      </div>
+    </motion.div>
+  );
+}
 
 function Cuestionario() {
   const [paso, setPaso] = useState<"inicio" | "preguntas" | "contacto" | "gracias">("inicio");
@@ -123,8 +202,8 @@ function Cuestionario() {
     const nuevas = [...respuestas];
     nuevas[indexPregunta] = respuestaActual;
     setRespuestas(nuevas);
-    setRespuestaActual(nuevas[indexPregunta + 1] || "");
     if (indexPregunta < PREGUNTAS.length - 1) {
+      setRespuestaActual(nuevas[indexPregunta + 1] || "");
       setIndexPregunta(indexPregunta + 1);
     } else {
       setPaso("contacto");
@@ -156,16 +235,16 @@ function Cuestionario() {
         </div>
         <h3 className="text-2xl font-bold text-primary mb-3">¡Gracias por contactarnos!</h3>
         <p className="text-muted-foreground mb-8">
-          Hemos recibido tus datos. Un consultor de Encuentro Financiero se pondrá en contacto contigo muy pronto.
+          Hemos recibido tus datos. Un consultor de Encuentro Financiero se pondrá en contacto contigo muy pronto para tu sesión gratuita.
         </p>
         <a
-          href={`https://wa.me/${WHATSAPP_NUMBER}`}
+          href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+          className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-4 rounded-xl transition-colors text-lg"
         >
           <MessageCircle className="h-5 w-5" />
-          Conectar por WhatsApp
+          Conectar a WhatsApp
         </a>
       </motion.div>
     );
@@ -178,68 +257,66 @@ function Cuestionario() {
         animate={{ opacity: 1, x: 0 }}
         className="bg-card border border-border rounded-2xl p-8 max-w-xl mx-auto shadow-lg"
       >
-        <h3 className="text-2xl font-bold text-primary mb-2">Déjenos sus datos</h3>
-        <p className="text-muted-foreground mb-6">Contáctenos ya, con gusto le atenderemos.</p>
+        <h3 className="text-2xl font-bold text-primary mb-1">Déjenos sus datos</h3>
+        <p className="text-secondary font-semibold mb-6">Contáctenos ya.</p>
         <form onSubmit={handleContacto} className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-primary mb-1">Nombre</label>
-              <input
-                type="text"
-                required
-                value={contacto.nombre}
-                onChange={(e) => setContacto({ ...contacto, nombre: e.target.value })}
-                className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
-                placeholder="Juan"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-primary mb-1">Apellido</label>
-              <input
-                type="text"
-                required
-                value={contacto.apellido}
-                onChange={(e) => setContacto({ ...contacto, apellido: e.target.value })}
-                className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
-                placeholder="García"
-              />
-            </div>
+          <div>
+            <label className="block text-sm font-semibold text-primary mb-1">Nombre</label>
+            <input
+              type="text"
+              required
+              value={contacto.nombre}
+              onChange={(e) => setContacto({ ...contacto, nombre: e.target.value })}
+              className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
+              placeholder="Juan"
+            />
           </div>
           <div>
-            <label className="block text-sm font-medium text-primary mb-1">Correo</label>
+            <label className="block text-sm font-semibold text-primary mb-1">Apellido</label>
+            <input
+              type="text"
+              required
+              value={contacto.apellido}
+              onChange={(e) => setContacto({ ...contacto, apellido: e.target.value })}
+              className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
+              placeholder="García"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-primary mb-1">Correo</label>
             <input
               type="email"
               required
               value={contacto.correo}
               onChange={(e) => setContacto({ ...contacto, correo: e.target.value })}
-              className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
+              className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
               placeholder="juan@ejemplo.com"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-primary mb-1">Teléfono</label>
+            <label className="block text-sm font-semibold text-primary mb-1">Teléfono</label>
             <input
               type="tel"
               required
               value={contacto.telefono}
               onChange={(e) => setContacto({ ...contacto, telefono: e.target.value })}
-              className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
+              className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
               placeholder="+1 (305) 555-0123"
             />
           </div>
-          <Button type="submit" className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 mt-2">
+          <Button type="submit" className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 py-6 text-base font-bold mt-2">
             Contáctenos
           </Button>
         </form>
         <div className="mt-6 pt-6 border-t border-border text-center">
           <a
-            href={`https://wa.me/${WHATSAPP_NUMBER}`}
+            href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-green-600 font-medium hover:text-green-700"
+            className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-xl transition-colors"
           >
             <MessageCircle className="h-5 w-5" />
-            También puede contactarnos por WhatsApp
+            Conectar a WhatsApp
           </a>
         </div>
       </motion.div>
@@ -253,11 +330,10 @@ function Cuestionario() {
         key={indexPregunta}
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: -40 }}
         className="bg-card border border-border rounded-2xl p-8 max-w-xl mx-auto shadow-lg"
       >
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-sm font-medium text-secondary">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-sm font-bold text-secondary">
             Pregunta {indexPregunta + 1} de {PREGUNTAS.length}
           </span>
           <span className="text-sm text-muted-foreground">{Math.round(progreso)}% completado</span>
@@ -268,7 +344,7 @@ function Cuestionario() {
             style={{ width: `${progreso}%` }}
           />
         </div>
-        <h3 className="text-xl font-semibold text-primary mb-6">{PREGUNTAS[indexPregunta]}</h3>
+        <h3 className="text-xl font-semibold text-primary mb-6 leading-relaxed">{PREGUNTAS[indexPregunta]}</h3>
         <textarea
           value={respuestaActual}
           onChange={(e) => setRespuestaActual(e.target.value)}
@@ -297,6 +373,7 @@ function Cuestionario() {
     );
   }
 
+  // inicio
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -306,34 +383,33 @@ function Cuestionario() {
       <div className="text-center mb-8">
         <h3 className="text-2xl font-bold text-primary mb-2">Cuestionario Pre-Consultoría</h3>
         <p className="text-muted-foreground">
-          Estas preguntas nos ayudan a entender tu situación y preparar la mejor estrategia para ti.
-          La primera sesión es completamente gratuita.
+          Ingresa tu correo y teléfono para comenzar. Estas preguntas nos ayudan a preparar la mejor estrategia para ti.
         </p>
       </div>
       <form onSubmit={handleInicio} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-primary mb-1">Correo electrónico</label>
+          <label className="block text-sm font-semibold text-primary mb-1">Correo electrónico</label>
           <input
             type="email"
             required
             value={datos.email}
             onChange={(e) => setDatos({ ...datos, email: e.target.value })}
-            className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
+            className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
             placeholder="juan@ejemplo.com"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-primary mb-1">Teléfono</label>
+          <label className="block text-sm font-semibold text-primary mb-1">Teléfono</label>
           <input
             type="tel"
             required
             value={datos.telefono}
             onChange={(e) => setDatos({ ...datos, telefono: e.target.value })}
-            className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
+            className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
             placeholder="+1 (305) 555-0123"
           />
         </div>
-        <Button type="submit" className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 mt-2">
+        <Button type="submit" className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 py-6 text-base font-bold">
           Comenzar Cuestionario
         </Button>
       </form>
@@ -346,8 +422,9 @@ export default function ServiciosPersonas() {
     <Layout>
       {/* Hero */}
       <section className="relative bg-primary py-24 overflow-hidden">
-        <div className="absolute inset-0 opacity-15">
+        <div className="absolute inset-0 opacity-20">
           <img src={serviciosImg} alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-transparent" />
         </div>
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -356,8 +433,8 @@ export default function ServiciosPersonas() {
             transition={{ duration: 0.7 }}
             className="max-w-2xl"
           >
-            <p className="text-secondary font-semibold text-sm uppercase tracking-widest mb-3">Consultoría Personal</p>
-            <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
+            <p className="text-secondary font-semibold text-sm uppercase tracking-widest mb-3">Consultoría para Personas</p>
+            <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6 leading-tight">
               Construye el futuro financiero que tu familia merece.
             </h1>
             <p className="text-xl text-primary-foreground/80">
@@ -367,8 +444,19 @@ export default function ServiciosPersonas() {
         </div>
       </section>
 
-      {/* Servicios */}
+      {/* VIDEO TESTIMONIAL */}
       <section className="py-20 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl font-bold text-primary mb-4">Lo que dicen nuestros clientes</h2>
+            <p className="text-muted-foreground">Historias reales de familias latinas que transformaron su futuro financiero.</p>
+          </div>
+          <VideoTestimonial />
+        </div>
+      </section>
+
+      {/* Servicios */}
+      <section className="py-20 bg-primary/5">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-3xl font-bold text-primary mb-4">Nuestros Servicios para Personas</h2>
@@ -407,11 +495,11 @@ export default function ServiciosPersonas() {
       </section>
 
       {/* Precios */}
-      <section className="py-20 bg-primary/5">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold text-primary mb-4">Paquetes y Precios</h2>
-            <p className="text-muted-foreground">Elige el plan que mejor se adapte a tus necesidades. Siempre comenzamos con una sesión gratuita.</p>
+            <h2 className="text-3xl font-bold text-primary mb-4">Costos — Consultoría Personas</h2>
+            <p className="text-muted-foreground">Elige el plan que mejor se adapte a tus necesidades. Siempre comenzamos con una sesión completamente gratuita.</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {PAQUETES.map((p, i) => (
@@ -428,27 +516,28 @@ export default function ServiciosPersonas() {
                 }`}
               >
                 {p.destacado && (
-                  <span className="text-xs font-bold uppercase tracking-wider text-secondary mb-4">Más popular</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-secondary mb-3">Más popular</span>
                 )}
                 <h3 className={`text-xl font-bold mb-1 ${p.destacado ? "text-primary-foreground" : "text-primary"}`}>
                   {p.nombre}
                 </h3>
-                <p className={`text-sm mb-4 ${p.destacado ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
+                <p className={`text-sm mb-1 ${p.destacado ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
                   {p.duracion}
                 </p>
-                <p className={`text-3xl font-bold mb-6 ${p.destacado ? "text-secondary" : "text-secondary"}`}>
-                  {p.precio}
+                <p className="text-3xl font-bold mb-3 text-secondary">{p.precio}</p>
+                <p className={`text-xs leading-relaxed mb-5 italic ${p.destacado ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
+                  {p.descripcion}
                 </p>
                 <ul className="space-y-2 flex-1 mb-8">
                   {p.puntos.map((punto, j) => (
                     <li key={j} className={`flex items-start gap-2 text-sm ${p.destacado ? "text-primary-foreground/90" : ""}`}>
-                      <CheckCircle className={`h-4 w-4 mt-0.5 shrink-0 ${p.destacado ? "text-secondary" : "text-secondary"}`} />
+                      <CheckCircle className="h-4 w-4 mt-0.5 shrink-0 text-secondary" />
                       <span>{punto}</span>
                     </li>
                   ))}
                 </ul>
                 <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                  href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`block text-center py-3 px-4 rounded-lg font-semibold text-sm transition-colors ${
@@ -457,7 +546,7 @@ export default function ServiciosPersonas() {
                       : "bg-primary text-primary-foreground hover:bg-primary/90"
                   }`}
                 >
-                  {p.precio === "Gratis" ? "Agendar Ahora" : "Consultar Precio"}
+                  {p.cta}
                 </a>
               </motion.div>
             ))}
@@ -465,34 +554,48 @@ export default function ServiciosPersonas() {
         </div>
       </section>
 
-      {/* Cuestionario */}
-      <section className="py-20 bg-background">
+      {/* Cuestionario Pre-Consultoría */}
+      <section className="py-20 bg-primary/5" id="cuestionario">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold text-primary mb-4">Cuestionario Pre-Consultoría</h2>
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl font-bold text-primary mb-4">Cuestionario Pre-Consultoría — Personas</h2>
             <p className="text-muted-foreground">
-              Responde estas preguntas para que nuestro equipo pueda preparar una consultoría personalizada para ti.
+              Responde estas preguntas para que nuestro equipo pueda preparar una consultoría completamente personalizada para ti y tu familia.
             </p>
           </div>
-          <Cuestionario />
-        </div>
-      </section>
 
-      {/* WhatsApp CTA */}
-      <section className="py-16 bg-green-50 border-t border-green-100">
-        <div className="container mx-auto px-4 text-center">
-          <Phone className="h-10 w-10 text-green-600 mx-auto mb-4" />
-          <h3 className="text-2xl font-bold text-primary mb-3">¿Prefiere hablar con nosotros directamente?</h3>
-          <p className="text-muted-foreground mb-6">Nuestro equipo está listo para atenderle por WhatsApp.</p>
-          <a
-            href={`https://wa.me/${WHATSAPP_NUMBER}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-4 rounded-xl transition-colors text-lg"
-          >
-            <MessageCircle className="h-6 w-6" />
-            Conectar por WhatsApp
-          </a>
+          {/* Las preguntas listadas visualmente */}
+          <div className="max-w-2xl mx-auto mb-12">
+            <div className="bg-card border border-border rounded-2xl p-8 shadow-sm">
+              <h4 className="font-bold text-primary mb-6 text-lg">Preguntas del cuestionario:</h4>
+              <ol className="space-y-3">
+                {PREGUNTAS.map((q, i) => (
+                  <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <span className="w-6 h-6 bg-secondary/10 text-secondary rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
+                      {i + 1}
+                    </span>
+                    <span>{q}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+
+          {/* Formulario interactivo */}
+          <Cuestionario />
+
+          {/* WhatsApp después del cuestionario */}
+          <div className="text-center mt-10">
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold px-10 py-5 rounded-2xl transition-colors text-lg shadow-lg"
+            >
+              <MessageCircle className="h-6 w-6" />
+              Conectar a WhatsApp
+            </a>
+          </div>
         </div>
       </section>
     </Layout>

@@ -12,11 +12,13 @@ import {
   Calculator,
   Tv,
   MessageCircle,
-  Phone,
+  Tag,
+  Users,
 } from "lucide-react";
 import serviciosImg from "@/assets/images/servicios-empresas.png";
 
 const WHATSAPP_NUMBER = "13055550123";
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 const PREGUNTAS = [
   "¿Tu empresa tiene claridad sobre su flujo de caja mensual?",
@@ -61,7 +63,7 @@ const SERVICIOS = [
       "Construcción y optimización del perfil crediticio empresarial",
       "Acceso a líneas de crédito y financiamiento",
       "Desarrollo de relaciones bancarias sólidas",
-      "Organización del flujo de efectivo",
+      "Organización del flujo de efectivo y educación financiera aplicada al negocio",
     ],
   },
   {
@@ -77,37 +79,51 @@ const SERVICIOS = [
   },
   {
     icon: Tv,
-    titulo: "Comerciales en Univision y Estrategias Digitales",
-    desc: "Llega a miles de clientes de la comunidad latina en EE.UU.",
+    titulo: "Llega a Miles de Clientes con Comerciales en Univision y Estrategias Digitales",
+    desc: "Impulsa tu negocio con publicidad estratégica en TV y marketing digital.",
     puntos: [
-      "Publicidad estratégica en TV (Univision) y marketing digital",
+      "Publicidad estratégica en TV (Univision) y marketing digital para generar clientes",
       "Diseño y optimización de páginas web enfocadas en conversión",
       "Posicionamiento en Google para captar clientes activos",
       "Estrategias de venta online",
       "Construcción de presencia digital sólida y consistente",
+      "Publicidad dirigida a la comunidad latina en EE.UU.",
     ],
   },
 ];
 
-const PAQUETES = [
+const PAQUETES_EMPRESAS = [
   {
     nombre: "Primera Sesión",
-    precio: "Gratis",
+    precio: "GRATIS",
     duracion: "1 hora",
-    puntos: ["Diagnóstico inicial de tu empresa", "Identificación de oportunidades", "Recomendaciones de alto nivel"],
+    descripcion: "Sin costo. Sin compromisos.",
+    puntos: [
+      "Diagnóstico inicial de su empresa",
+      "Identificación de oportunidades de mejora",
+      "Recomendaciones de alto nivel",
+    ],
     destacado: false,
+    cta: "Agendar Ahora",
   },
   {
     nombre: "Paquete Básico",
     precio: "Consultar",
     duracion: "3 meses",
-    puntos: ["Seguimiento cada 2 semanas", "1 llamada de 1 hora por sesión", "Plan de acción básico"],
+    descripcion: "Reunión virtual cada 2 semanas para hacer seguimiento a la estrategia durante 3 meses.",
+    puntos: [
+      "Seguimiento cada 2 semanas",
+      "1 llamada de 1 hora por sesión",
+      "Plan de acción básico",
+    ],
     destacado: false,
+    cta: "Consultar Precio",
   },
   {
     nombre: "Paquete Medio",
     precio: "Consultar",
     duracion: "3 meses",
+    descripcion: "Reunión virtual cada semana y una reunión presencial al mes para hacer seguimiento a la estrategia durante 3 meses.",
     puntos: [
       "Seguimiento semanal virtual",
       "1 visita presencial al mes",
@@ -115,20 +131,123 @@ const PAQUETES = [
       "Reportes mensuales de avance",
     ],
     destacado: true,
+    cta: "Consultar Precio",
   },
   {
     nombre: "Paquete Completo",
     precio: "Consultar",
     duracion: "3 meses",
+    descripcion: "1 Reunión virtual + 1 reunión presencial cada semana + plan de acción integral.",
     puntos: [
       "Plan de acción integral",
-      "2 llamadas virtuales semanales",
+      "2 reuniones virtuales semanales",
       "Visita presencial semanal de 1 hora",
       "Seguimiento continuo y reportes",
     ],
     destacado: false,
+    cta: "Consultar Precio",
   },
 ];
+
+const PAQUETES_PERSONAS = [
+  {
+    nombre: "Primera Sesión",
+    precio: "GRATIS",
+    duracion: "1 hora",
+    descripcion: "Sin costo. Sin compromisos.",
+    puntos: ["Evaluación inicial de tu situación financiera", "Identificación de oportunidades", "Recomendaciones personalizadas"],
+  },
+  {
+    nombre: "Paquete Básico",
+    precio: "Consultar",
+    duracion: "3 meses",
+    descripcion: "Reunión virtual cada 2 semanas para hacer seguimiento a la estrategia durante 3 meses.",
+    puntos: ["1 llamada de 1 hora cada 2 semanas", "Seguimiento de avances", "Plan de acción inicial"],
+  },
+  {
+    nombre: "Paquete Medio",
+    precio: "Consultar",
+    duracion: "3 meses",
+    descripcion: "Reunión virtual cada semana y una reunión presencial al mes para hacer seguimiento a la estrategia durante 3 meses.",
+    puntos: ["1 visita presencial de 1 hora al mes", "3 videollamadas de seguimiento al mes", "Revisión mensual de presupuesto", "Reporte de progreso"],
+  },
+  {
+    nombre: "Paquete Completo",
+    precio: "Consultar",
+    duracion: "3 meses",
+    descripcion: "1 Reunión virtual + 1 reunión presencial cada semana + plan de acción integral.",
+    puntos: ["Plan de acción integral personalizado", "2 llamadas semanales", "Visita presencial semanal de 1 hora", "Reportes continuos de avance"],
+  },
+];
+
+function PricingCard({
+  p,
+  showHighlight,
+}: {
+  p: (typeof PAQUETES_EMPRESAS)[0];
+  showHighlight: boolean;
+}) {
+  return (
+    <div
+      className={`rounded-2xl border p-7 flex flex-col ${
+        showHighlight && p.nombre === "Paquete Medio"
+          ? "bg-primary text-primary-foreground border-primary shadow-xl"
+          : "bg-card border-border shadow-sm"
+      }`}
+    >
+      {showHighlight && p.nombre === "Paquete Medio" && (
+        <span className="text-xs font-bold uppercase tracking-wider text-secondary mb-3">Más popular</span>
+      )}
+      <h3
+        className={`text-lg font-bold mb-1 ${
+          showHighlight && p.nombre === "Paquete Medio" ? "text-primary-foreground" : "text-primary"
+        }`}
+      >
+        {p.nombre}
+      </h3>
+      <p
+        className={`text-xs mb-1 ${
+          showHighlight && p.nombre === "Paquete Medio" ? "text-primary-foreground/70" : "text-muted-foreground"
+        }`}
+      >
+        {p.duracion}
+      </p>
+      <p className="text-2xl font-bold mb-2 text-secondary">{p.precio}</p>
+      <p
+        className={`text-xs leading-relaxed mb-5 italic ${
+          showHighlight && p.nombre === "Paquete Medio" ? "text-primary-foreground/70" : "text-muted-foreground"
+        }`}
+      >
+        {p.descripcion}
+      </p>
+      <ul className="space-y-2 flex-1 mb-6">
+        {p.puntos.map((punto, j) => (
+          <li
+            key={j}
+            className={`flex items-start gap-2 text-xs ${
+              showHighlight && p.nombre === "Paquete Medio" ? "text-primary-foreground/90" : ""
+            }`}
+          >
+            <CheckCircle className="h-3.5 w-3.5 mt-0.5 shrink-0 text-secondary" />
+            <span>{punto}</span>
+          </li>
+        ))}
+      </ul>
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`block text-center py-2.5 px-4 rounded-lg font-semibold text-sm transition-colors ${
+          showHighlight && p.nombre === "Paquete Medio"
+            ? "bg-secondary text-secondary-foreground hover:bg-secondary/90"
+            : "bg-primary text-primary-foreground hover:bg-primary/90"
+        }`}
+      >
+        {(p as any).cta || (p.precio === "GRATIS" ? "Agendar Ahora" : "Consultar Precio")}
+      </a>
+    </div>
+  );
+}
 
 function Cuestionario() {
   const [paso, setPaso] = useState<"inicio" | "preguntas" | "contacto" | "gracias">("inicio");
@@ -147,8 +266,8 @@ function Cuestionario() {
     const nuevas = [...respuestas];
     nuevas[indexPregunta] = respuestaActual;
     setRespuestas(nuevas);
-    setRespuestaActual(nuevas[indexPregunta + 1] || "");
     if (indexPregunta < PREGUNTAS.length - 1) {
+      setRespuestaActual(nuevas[indexPregunta + 1] || "");
       setIndexPregunta(indexPregunta + 1);
     } else {
       setPaso("contacto");
@@ -183,13 +302,13 @@ function Cuestionario() {
           Hemos recibido la información de su empresa. Un consultor especializado le contactará a la brevedad.
         </p>
         <a
-          href={`https://wa.me/${WHATSAPP_NUMBER}`}
+          href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+          className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-4 rounded-xl transition-colors text-lg"
         >
           <MessageCircle className="h-5 w-5" />
-          Conectar por WhatsApp
+          Conectar a WhatsApp
         </a>
       </motion.div>
     );
@@ -202,68 +321,66 @@ function Cuestionario() {
         animate={{ opacity: 1, x: 0 }}
         className="bg-card border border-border rounded-2xl p-8 max-w-xl mx-auto shadow-lg"
       >
-        <h3 className="text-2xl font-bold text-primary mb-2">Déjenos sus datos</h3>
-        <p className="text-muted-foreground mb-6">Contáctenos ya, con gusto le atenderemos.</p>
+        <h3 className="text-2xl font-bold text-primary mb-1">Déjenos sus datos</h3>
+        <p className="text-secondary font-semibold mb-6">Contáctenos ya.</p>
         <form onSubmit={handleContacto} className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-primary mb-1">Nombre</label>
-              <input
-                type="text"
-                required
-                value={contacto.nombre}
-                onChange={(e) => setContacto({ ...contacto, nombre: e.target.value })}
-                className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
-                placeholder="María"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-primary mb-1">Apellido</label>
-              <input
-                type="text"
-                required
-                value={contacto.apellido}
-                onChange={(e) => setContacto({ ...contacto, apellido: e.target.value })}
-                className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
-                placeholder="Rodríguez"
-              />
-            </div>
+          <div>
+            <label className="block text-sm font-semibold text-primary mb-1">Nombre</label>
+            <input
+              type="text"
+              required
+              value={contacto.nombre}
+              onChange={(e) => setContacto({ ...contacto, nombre: e.target.value })}
+              className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
+              placeholder="María"
+            />
           </div>
           <div>
-            <label className="block text-sm font-medium text-primary mb-1">Correo</label>
+            <label className="block text-sm font-semibold text-primary mb-1">Apellido</label>
+            <input
+              type="text"
+              required
+              value={contacto.apellido}
+              onChange={(e) => setContacto({ ...contacto, apellido: e.target.value })}
+              className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
+              placeholder="Rodríguez"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-primary mb-1">Correo</label>
             <input
               type="email"
               required
               value={contacto.correo}
               onChange={(e) => setContacto({ ...contacto, correo: e.target.value })}
-              className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
+              className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
               placeholder="maria@miempresa.com"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-primary mb-1">Teléfono</label>
+            <label className="block text-sm font-semibold text-primary mb-1">Teléfono</label>
             <input
               type="tel"
               required
               value={contacto.telefono}
               onChange={(e) => setContacto({ ...contacto, telefono: e.target.value })}
-              className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
+              className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
               placeholder="+1 (786) 555-0123"
             />
           </div>
-          <Button type="submit" className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90">
+          <Button type="submit" className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 py-6 text-base font-bold mt-2">
             Contáctenos
           </Button>
         </form>
         <div className="mt-6 pt-6 border-t border-border text-center">
           <a
-            href={`https://wa.me/${WHATSAPP_NUMBER}`}
+            href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-green-600 font-medium hover:text-green-700"
+            className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-xl transition-colors"
           >
             <MessageCircle className="h-5 w-5" />
-            También puede contactarnos por WhatsApp
+            Conectar a WhatsApp
           </a>
         </div>
       </motion.div>
@@ -279,8 +396,8 @@ function Cuestionario() {
         animate={{ opacity: 1, x: 0 }}
         className="bg-card border border-border rounded-2xl p-8 max-w-xl mx-auto shadow-lg"
       >
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-sm font-medium text-secondary">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-sm font-bold text-secondary">
             Pregunta {indexPregunta + 1} de {PREGUNTAS.length}
           </span>
           <span className="text-sm text-muted-foreground">{Math.round(progreso)}% completado</span>
@@ -288,7 +405,7 @@ function Cuestionario() {
         <div className="w-full bg-muted rounded-full h-2 mb-8">
           <div className="bg-secondary h-2 rounded-full transition-all duration-500" style={{ width: `${progreso}%` }} />
         </div>
-        <h3 className="text-xl font-semibold text-primary mb-6">{PREGUNTAS[indexPregunta]}</h3>
+        <h3 className="text-xl font-semibold text-primary mb-6 leading-relaxed">{PREGUNTAS[indexPregunta]}</h3>
         <textarea
           value={respuestaActual}
           onChange={(e) => setRespuestaActual(e.target.value)}
@@ -317,34 +434,32 @@ function Cuestionario() {
     >
       <div className="text-center mb-8">
         <h3 className="text-2xl font-bold text-primary mb-2">Diagnóstico Empresarial</h3>
-        <p className="text-muted-foreground">
-          Estas preguntas nos permiten entender la situación actual de su empresa y diseñar un plan de acción personalizado.
-        </p>
+        <p className="text-muted-foreground">Ingresa tu correo y teléfono para comenzar el diagnóstico de tu empresa.</p>
       </div>
       <form onSubmit={handleInicio} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-primary mb-1">Correo electrónico</label>
+          <label className="block text-sm font-semibold text-primary mb-1">Correo electrónico</label>
           <input
             type="email"
             required
             value={datos.email}
             onChange={(e) => setDatos({ ...datos, email: e.target.value })}
-            className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
+            className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
             placeholder="contacto@miempresa.com"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-primary mb-1">Teléfono</label>
+          <label className="block text-sm font-semibold text-primary mb-1">Teléfono</label>
           <input
             type="tel"
             required
             value={datos.telefono}
             onChange={(e) => setDatos({ ...datos, telefono: e.target.value })}
-            className="w-full border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
+            className="w-full border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-secondary bg-background"
             placeholder="+1 (786) 555-0123"
           />
         </div>
-        <Button type="submit" className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90">
+        <Button type="submit" className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 py-6 text-base font-bold">
           Iniciar Diagnóstico
         </Button>
       </form>
@@ -357,8 +472,9 @@ export default function ServiciosEmpresas() {
     <Layout>
       {/* Hero */}
       <section className="relative bg-primary py-24 overflow-hidden">
-        <div className="absolute inset-0 opacity-15">
+        <div className="absolute inset-0 opacity-20">
           <img src={serviciosImg} alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-transparent" />
         </div>
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -367,8 +483,8 @@ export default function ServiciosEmpresas() {
             transition={{ duration: 0.7 }}
             className="max-w-2xl"
           >
-            <p className="text-secondary font-semibold text-sm uppercase tracking-widest mb-3">Consultoría Empresarial</p>
-            <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
+            <p className="text-secondary font-semibold text-sm uppercase tracking-widest mb-3">Consultoría para Empresas</p>
+            <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6 leading-tight">
               Transforma tu negocio con estrategia, estructura y capital.
             </h1>
             <p className="text-xl text-primary-foreground/80">
@@ -414,17 +530,20 @@ export default function ServiciosEmpresas() {
         </div>
       </section>
 
-      {/* Precios */}
+      {/* COSTOS CONSULTORÍA EMPRESAS */}
       <section className="py-20 bg-primary/5">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold text-primary mb-4">Paquetes Empresariales</h2>
-            <p className="text-muted-foreground">
-              Invierta en el crecimiento de su empresa. Descuento del 10% por pago de 3 meses.
-            </p>
+          <div className="text-center max-w-2xl mx-auto mb-6">
+            <h2 className="text-3xl font-bold text-primary mb-4">Costos — Consultoría Empresas</h2>
+            <p className="text-muted-foreground mb-4">Paquetes diseñados para acompañar el crecimiento de su empresa paso a paso.</p>
+            {/* Descuento destacado */}
+            <div className="inline-flex items-center gap-2 bg-secondary/10 border border-secondary/30 text-secondary font-bold px-6 py-3 rounded-full text-sm">
+              <Tag className="h-4 w-4" />
+              Descuento del 10% por pago de 3 meses
+            </div>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {PAQUETES.map((p, i) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+            {PAQUETES_EMPRESAS.map((p, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
@@ -438,15 +557,18 @@ export default function ServiciosEmpresas() {
                 }`}
               >
                 {p.destacado && (
-                  <span className="text-xs font-bold uppercase tracking-wider text-secondary mb-4">Más popular</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-secondary mb-3">Más popular</span>
                 )}
                 <h3 className={`text-xl font-bold mb-1 ${p.destacado ? "text-primary-foreground" : "text-primary"}`}>
                   {p.nombre}
                 </h3>
-                <p className={`text-sm mb-4 ${p.destacado ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
+                <p className={`text-sm mb-1 ${p.destacado ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
                   {p.duracion}
                 </p>
-                <p className="text-3xl font-bold mb-6 text-secondary">{p.precio}</p>
+                <p className="text-3xl font-bold mb-3 text-secondary">{p.precio}</p>
+                <p className={`text-xs leading-relaxed mb-5 italic ${p.destacado ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
+                  {p.descripcion}
+                </p>
                 <ul className="space-y-2 flex-1 mb-8">
                   {p.puntos.map((punto, j) => (
                     <li key={j} className={`flex items-start gap-2 text-sm ${p.destacado ? "text-primary-foreground/90" : ""}`}>
@@ -456,7 +578,7 @@ export default function ServiciosEmpresas() {
                   ))}
                 </ul>
                 <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                  href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`block text-center py-3 px-4 rounded-lg font-semibold text-sm transition-colors ${
@@ -465,10 +587,113 @@ export default function ServiciosEmpresas() {
                       : "bg-primary text-primary-foreground hover:bg-primary/90"
                   }`}
                 >
-                  {p.precio === "Gratis" ? "Agendar Ahora" : "Consultar Precio"}
+                  {p.cta}
                 </a>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* COSTOS CONSULTORÍA PERSONA Y EMPRESA — Tabla comparativa */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl font-bold text-primary mb-4">Costos Consultoría Persona y Empresa</h2>
+            <p className="text-muted-foreground">Comparativa de nuestros paquetes para personas y empresas. Todos incluyen sesión inicial gratuita.</p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-10">
+            {/* Personas */}
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 bg-secondary/10 rounded-xl flex items-center justify-center">
+                  <Users className="h-5 w-5 text-secondary" />
+                </div>
+                <h3 className="text-xl font-bold text-primary">Personas y Familias</h3>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {PAQUETES_PERSONAS.map((p, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="bg-card border border-border rounded-xl p-6 shadow-sm flex flex-col"
+                  >
+                    <h4 className="font-bold text-primary mb-1">{p.nombre}</h4>
+                    <p className="text-secondary font-bold text-xl mb-1">{p.precio}</p>
+                    <p className="text-xs text-muted-foreground mb-3">{p.duracion}</p>
+                    <p className="text-xs text-muted-foreground italic mb-4 leading-relaxed">{p.descripcion}</p>
+                    <ul className="space-y-1 flex-1">
+                      {p.puntos.map((punto, j) => (
+                        <li key={j} className="flex items-start gap-2 text-xs text-muted-foreground">
+                          <CheckCircle className="h-3.5 w-3.5 mt-0.5 shrink-0 text-secondary" />
+                          {punto}
+                        </li>
+                      ))}
+                    </ul>
+                    <a
+                      href={WHATSAPP_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-center mt-4 py-2 px-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-xs transition-colors"
+                    >
+                      {p.precio === "GRATIS" ? "Agendar Ahora" : "Consultar Precio"}
+                    </a>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Empresas */}
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 bg-secondary/10 rounded-xl flex items-center justify-center">
+                  <Building2 className="h-5 w-5 text-secondary" />
+                </div>
+                <div className="flex items-center gap-3">
+                  <h3 className="text-xl font-bold text-primary">Empresas y Negocios</h3>
+                  <span className="text-xs bg-secondary/10 border border-secondary/30 text-secondary font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                    <Tag className="h-3 w-3" /> 10% dto.
+                  </span>
+                </div>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {PAQUETES_EMPRESAS.map((p, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="bg-card border border-border rounded-xl p-6 shadow-sm flex flex-col"
+                  >
+                    <h4 className="font-bold text-primary mb-1">{p.nombre}</h4>
+                    <p className="text-secondary font-bold text-xl mb-1">{p.precio}</p>
+                    <p className="text-xs text-muted-foreground mb-3">{p.duracion}</p>
+                    <p className="text-xs text-muted-foreground italic mb-4 leading-relaxed">{p.descripcion}</p>
+                    <ul className="space-y-1 flex-1">
+                      {p.puntos.map((punto, j) => (
+                        <li key={j} className="flex items-start gap-2 text-xs text-muted-foreground">
+                          <CheckCircle className="h-3.5 w-3.5 mt-0.5 shrink-0 text-secondary" />
+                          {punto}
+                        </li>
+                      ))}
+                    </ul>
+                    <a
+                      href={WHATSAPP_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-center mt-4 py-2 px-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-xs transition-colors"
+                    >
+                      {p.precio === "GRATIS" ? "Agendar Ahora" : "Consultar Precio"}
+                    </a>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -483,7 +708,7 @@ export default function ServiciosEmpresas() {
             Agenda tu consultoría y obtén un plan personalizado para optimizar tus finanzas, proteger tus activos y acceder a nuevas oportunidades de crédito e inversión.
           </p>
           <a
-            href={`https://wa.me/${WHATSAPP_NUMBER}`}
+            href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold px-8 py-4 rounded-xl transition-colors text-lg"
@@ -494,34 +719,50 @@ export default function ServiciosEmpresas() {
         </div>
       </section>
 
-      {/* Cuestionario */}
-      <section className="py-20 bg-background">
+      {/* Cuestionario Pre-Consultoría Empresas */}
+      <section className="py-20 bg-background" id="cuestionario">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold text-primary mb-4">Diagnóstico Empresarial</h2>
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl font-bold text-primary mb-4">
+              Cuestionario Pre-Consultoría — Empresas Latinas en EE.UU.
+            </h2>
             <p className="text-muted-foreground">
-              Complete este diagnóstico para que nuestro equipo diseñe una estrategia personalizada para su empresa.
+              Complete este diagnóstico para que nuestro equipo diseñe una estrategia completamente personalizada para su empresa.
             </p>
           </div>
-          <Cuestionario />
-        </div>
-      </section>
 
-      {/* WhatsApp */}
-      <section className="py-16 bg-green-50 border-t border-green-100">
-        <div className="container mx-auto px-4 text-center">
-          <Phone className="h-10 w-10 text-green-600 mx-auto mb-4" />
-          <h3 className="text-2xl font-bold text-primary mb-3">¿Listo para hablar con un especialista?</h3>
-          <p className="text-muted-foreground mb-6">Contáctenos ahora y comience la transformación de su empresa.</p>
-          <a
-            href={`https://wa.me/${WHATSAPP_NUMBER}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-4 rounded-xl transition-colors text-lg"
-          >
-            <MessageCircle className="h-6 w-6" />
-            Conectar por WhatsApp
-          </a>
+          {/* Lista visible de preguntas */}
+          <div className="max-w-2xl mx-auto mb-12">
+            <div className="bg-card border border-border rounded-2xl p-8 shadow-sm">
+              <h4 className="font-bold text-primary mb-6 text-lg">Preguntas del diagnóstico:</h4>
+              <ol className="space-y-3">
+                {PREGUNTAS.map((q, i) => (
+                  <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <span className="w-6 h-6 bg-secondary/10 text-secondary rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
+                      {i + 1}
+                    </span>
+                    <span>{q}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+
+          {/* Formulario interactivo */}
+          <Cuestionario />
+
+          {/* Formulario de contacto y WhatsApp */}
+          <div className="text-center mt-10">
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold px-10 py-5 rounded-2xl transition-colors text-lg shadow-lg"
+            >
+              <MessageCircle className="h-6 w-6" />
+              Conectar a WhatsApp
+            </a>
+          </div>
         </div>
       </section>
     </Layout>
