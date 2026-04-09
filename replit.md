@@ -16,6 +16,24 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 - **API codegen**: Orval (from OpenAPI spec)
 - **Build**: esbuild (CJS bundle)
 
+## Artifacts
+
+### Encuentro Financiero (`artifacts/encuentro-financiero`)
+- **Type**: React + Vite web app
+- **Preview path**: `/`
+- **Language**: Spanish (all UI content)
+- **Description**: Premium consulting website for the Latino financial/business consulting firm "Encuentro Financiero"
+- **Pages**:
+  - `/` — Home page with hero, value prop, services overview, testimonials
+  - `/servicios-personas` — Personal consulting services + multi-step pre-consultation questionnaire
+  - `/servicios-empresas` — Business consulting services + multi-step pre-consultation questionnaire
+  - `/nosotros` — About us, mission, vision, team
+  - `/casos-exito` — Success stories / testimonials
+  - `/blog` — Blog/resources
+  - `/libros` — Book recommendations
+- **Design**: Deep navy (#0F172A) + rich gold palette, Playfair Display typography, premium wealth management aesthetic
+- **Features**: Multi-step wizard questionnaires, WhatsApp integration, framer-motion animations, pricing tables
+
 ## Key Commands
 
 - `pnpm run typecheck` — full typecheck across all packages

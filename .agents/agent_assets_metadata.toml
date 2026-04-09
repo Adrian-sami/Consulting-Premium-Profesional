@@ -1,0 +1,62 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "lc-sQ38R2DCgf9j-QPZzq"
+uri = "file://artifacts/encuentro-financiero/src/assets/images/hero.png"
+type = "image"
+title = "Premium wealth management hero"
+
+[[generated]]
+id = "G2jnbQS11WZ_ujzqWitWI"
+uri = "file://artifacts/encuentro-financiero/src/assets/images/servicios-personas.png"
+type = "image"
+title = "Personal finance consulting"
+
+[[generated]]
+id = "zxPwwC3jKuVxriZSSCoFc"
+uri = "file://artifacts/encuentro-financiero/src/assets/images/servicios-empresas.png"
+type = "image"
+title = "Business consulting meeting"
+
+[[generated]]
+id = "3zVzTDQiEEGHfIQ-jrbHs"
+uri = "file://artifacts/encuentro-financiero/src/assets/images/team-1.png"
+type = "image"
+title = "Senior financial advisor portrait"
+
+[[generated]]
+id = "NU8ZViEbFqdoMlyiHTsrq"
+uri = "file://artifacts/encuentro-financiero/src/assets/images/team-2.png"
+type = "image"
+title = "Wealth manager portrait"
+
+[[generated]]
+id = "D6apHrGwZbhU8DT8GaokA"
+uri = "file://artifacts/encuentro-financiero/src/assets/images/team-3.png"
+type = "image"
+title = "Business consultant portrait"
+
+[[generated]]
+id = "oQcNxBjFklX6wXQwF3Iyf"
+uri = "file://artifacts/encuentro-financiero/src/assets/images/testimonial-family.png"
+type = "image"
+title = "Family testimonial portrait"
+
+[[generated]]
+id = "8nDahhLrh8QGBONXF7CAd"
+uri = "file://artifacts/encuentro-financiero/src/assets/images/testimonial-business.png"
+type = "image"
+title = "Entrepreneur testimonial portrait"
+
+[[generated]]
+id = "_7Ra2IUyDvKMwAcw4rEe4"
+uri = "file://artifacts/encuentro-financiero/src/assets/images/blog-credit.png"
+type = "image"
+title = "Blog credit building"
+
+[[generated]]
+id = "eN9CL4ABvapiH1BQWpVGg"
+uri = "file://artifacts/encuentro-financiero/src/assets/images/blog-mistakes.png"
+type = "image"
+title = "Blog financial mistakes"
