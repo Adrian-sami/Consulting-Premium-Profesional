@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, CheckCircle, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import logoImg from "@assets/Encuentro-Financiero---Logo_3_1775783687628.png";
 
 const WHATSAPP_NUMBER = "13055550123";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
@@ -209,23 +210,8 @@ export function Navbar() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-20 items-center justify-between">
             <div className="flex items-center">
-              <Link href="/" className="flex items-center gap-3 group">
-                {/* Brand Isotipo */}
-                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
-                  <rect width="36" height="36" fill="hsl(225,85%,13%)" />
-                  <polygon points="6,30 18,6 30,30" fill="hsl(21,99%,48%)" opacity="0.9" />
-                  <polygon points="6,30 18,14 30,30" fill="hsl(138,64%,44%)" opacity="0.7" />
-                  <rect x="6" y="28" width="24" height="2" fill="hsl(21,99%,48%)" />
-                </svg>
-                {/* Brand Name */}
-                <div className="flex flex-col leading-none">
-                  <span className="font-black text-primary tracking-[0.12em] uppercase text-sm" style={{ fontFamily: "'Fahkwang', sans-serif" }}>
-                    Encuentro
-                  </span>
-                  <span className="font-light text-secondary tracking-[0.15em] uppercase text-sm" style={{ fontFamily: "'Fahkwang', sans-serif" }}>
-                    Financiero
-                  </span>
-                </div>
+              <Link href="/">
+                <img src={logoImg} alt="Encuentro Financiero" className="h-12 w-auto" />
               </Link>
             </div>
 
