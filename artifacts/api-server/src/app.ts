@@ -1,13 +1,11 @@
 import express, { type Express } from "express";
 import cors from "cors";
 import pinoHttpImport from "pino-http";
-import type { IncomingMessage, ServerResponse } from "http";
 import router from "./routes";
 import { logger } from "./lib/logger";
 
-// ✅ FIX: normalize import (works in all environments)
 const pinoHttp =
-  (pinoHttpImport as unknown as { default?: any }).default || pinoHttpImport;
+  (pinoHttpImport as any).default || pinoHttpImport;
 
 const app: Express = express();
 
@@ -15,14 +13,14 @@ app.use(
   pinoHttp({
     logger,
     serializers: {
-      req(req: IncomingMessage & { id?: string }) {
+      req(req: any) {
         return {
           id: req.id,
           method: req.method,
           url: req.url?.split("?")[0],
         };
       },
-      res(res: ServerResponse) {
+      res(res: any) {
         return {
           statusCode: res.statusCode,
         };
