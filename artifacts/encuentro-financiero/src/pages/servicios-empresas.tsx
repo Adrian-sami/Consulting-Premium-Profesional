@@ -13,7 +13,6 @@ import {
   Tv,
   MessageCircle,
   Tag,
-  Users,
 } from "lucide-react";
 import serviciosImg from "@/assets/images/servicios-empresas.png";
 
@@ -149,36 +148,6 @@ const PAQUETES_EMPRESAS = [
   },
 ];
 
-const PAQUETES_PERSONAS = [
-  {
-    nombre: "Primera Sesión",
-    precio: "GRATIS",
-    duracion: "1 hora",
-    descripcion: "Sin costo. Sin compromisos.",
-    puntos: ["Evaluación inicial de tu situación financiera", "Identificación de oportunidades", "Recomendaciones personalizadas"],
-  },
-  {
-    nombre: "Paquete Básico",
-    precio: "Consultar",
-    duracion: "3 meses",
-    descripcion: "Reunión virtual cada 2 semanas para hacer seguimiento a la estrategia durante 3 meses.",
-    puntos: ["1 llamada de 1 hora cada 2 semanas", "Seguimiento de avances", "Plan de acción inicial"],
-  },
-  {
-    nombre: "Paquete Medio",
-    precio: "Consultar",
-    duracion: "3 meses",
-    descripcion: "Reunión virtual cada semana y una reunión presencial al mes para hacer seguimiento a la estrategia durante 3 meses.",
-    puntos: ["1 visita presencial de 1 hora al mes", "3 videollamadas de seguimiento al mes", "Revisión mensual de presupuesto", "Reporte de progreso"],
-  },
-  {
-    nombre: "Paquete Completo",
-    precio: "Consultar",
-    duracion: "3 meses",
-    descripcion: "1 Reunión virtual + 1 reunión presencial cada semana + plan de acción integral.",
-    puntos: ["Plan de acción integral personalizado", "2 llamadas semanales", "Visita presencial semanal de 1 hora", "Reportes continuos de avance"],
-  },
-];
 
 function PricingCard({
   p,
@@ -595,105 +564,78 @@ export default function ServiciosEmpresas() {
         </div>
       </section>
 
-      {/* COSTOS CONSULTORÍA PERSONA Y EMPRESA — Tabla comparativa */}
+      {/* Nuestro Proceso */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl font-bold text-primary mb-4">Costos Consultoría Persona y Empresa</h2>
-            <p className="text-muted-foreground">Comparativa de nuestros paquetes para personas y empresas. Todos incluyen sesión inicial gratuita.</p>
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-3xl font-bold text-primary mb-4">Nuestro Proceso de Trabajo</h2>
+            <p className="text-muted-foreground">Cuatro pasos simples para transformar las finanzas de su empresa con acompañamiento experto de principio a fin.</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                paso: "01",
+                titulo: "Sesión Gratuita de Diagnóstico",
+                desc: "Analizamos su situación financiera actual, identificamos riesgos y detectamos oportunidades de crecimiento sin ningún costo.",
+              },
+              {
+                paso: "02",
+                titulo: "Plan Personalizado",
+                desc: "Diseñamos una estrategia a medida para su empresa: optimización de costos, acceso a crédito, estructura fiscal y proyección a futuro.",
+              },
+              {
+                paso: "03",
+                titulo: "Implementación y Seguimiento",
+                desc: "Acompañamos la ejecución del plan con reuniones periódicas, ajustes estratégicos y reportes de avance claros y medibles.",
+              },
+              {
+                paso: "04",
+                titulo: "Resultados y Crecimiento",
+                desc: "Medimos los resultados reales: mayor flujo de caja, crédito optimizado, impuestos reducidos y empresa lista para escalar.",
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.15 }}
+                className="relative"
+              >
+                <div className="bg-card border border-border rounded-2xl p-8 shadow-sm h-full">
+                  <span className="text-5xl font-black text-secondary/20 block mb-4 leading-none">{item.paso}</span>
+                  <h3 className="text-lg font-bold text-primary mb-3">{item.titulo}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+                </div>
+                {i < 3 && (
+                  <div className="hidden lg:block absolute top-1/2 -right-4 -translate-y-1/2 z-10">
+                    <ChevronRight className="h-6 w-6 text-secondary/40" />
+                  </div>
+                )}
+              </motion.div>
+            ))}
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-10">
-            {/* Personas */}
-            <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-secondary/10 rounded-xl flex items-center justify-center">
-                  <Users className="h-5 w-5 text-secondary" />
-                </div>
-                <h3 className="text-xl font-bold text-primary">Personas y Familias</h3>
-              </div>
-              <div className="grid sm:grid-cols-2 gap-4">
-                {PAQUETES_PERSONAS.map((p, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className="bg-card border border-border rounded-xl p-6 shadow-sm flex flex-col"
-                  >
-                    <h4 className="font-bold text-primary mb-1">{p.nombre}</h4>
-                    <p className="text-secondary font-bold text-xl mb-1">{p.precio}</p>
-                    <p className="text-xs text-muted-foreground mb-3">{p.duracion}</p>
-                    <p className="text-xs text-muted-foreground italic mb-4 leading-relaxed">{p.descripcion}</p>
-                    <ul className="space-y-1 flex-1">
-                      {p.puntos.map((punto, j) => (
-                        <li key={j} className="flex items-start gap-2 text-xs text-muted-foreground">
-                          <CheckCircle className="h-3.5 w-3.5 mt-0.5 shrink-0 text-secondary" />
-                          {punto}
-                        </li>
-                      ))}
-                    </ul>
-                    <a
-                      href={WHATSAPP_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-center mt-4 py-2 px-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-xs transition-colors"
-                    >
-                      {p.precio === "GRATIS" ? "Agendar Ahora" : "Consultar Precio"}
-                    </a>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Empresas */}
-            <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-secondary/10 rounded-xl flex items-center justify-center">
-                  <Building2 className="h-5 w-5 text-secondary" />
-                </div>
-                <div className="flex items-center gap-3">
-                  <h3 className="text-xl font-bold text-primary">Empresas y Negocios</h3>
-                  <span className="text-xs bg-secondary/10 border border-secondary/30 text-secondary font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
-                    <Tag className="h-3 w-3" /> 10% dto.
-                  </span>
-                </div>
-              </div>
-              <div className="grid sm:grid-cols-2 gap-4">
-                {PAQUETES_EMPRESAS.map((p, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className="bg-card border border-border rounded-xl p-6 shadow-sm flex flex-col"
-                  >
-                    <h4 className="font-bold text-primary mb-1">{p.nombre}</h4>
-                    <p className="text-secondary font-bold text-xl mb-1">{p.precio}</p>
-                    <p className="text-xs text-muted-foreground mb-3">{p.duracion}</p>
-                    <p className="text-xs text-muted-foreground italic mb-4 leading-relaxed">{p.descripcion}</p>
-                    <ul className="space-y-1 flex-1">
-                      {p.puntos.map((punto, j) => (
-                        <li key={j} className="flex items-start gap-2 text-xs text-muted-foreground">
-                          <CheckCircle className="h-3.5 w-3.5 mt-0.5 shrink-0 text-secondary" />
-                          {punto}
-                        </li>
-                      ))}
-                    </ul>
-                    <a
-                      href={WHATSAPP_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-center mt-4 py-2 px-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-xs transition-colors"
-                    >
-                      {p.precio === "GRATIS" ? "Agendar Ahora" : "Consultar Precio"}
-                    </a>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+          {/* Stats row */}
+          <div className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { valor: "100+", label: "Empresas asesoradas" },
+              { valor: "95%", label: "Clientes satisfechos" },
+              { valor: "$2M+", label: "En crédito gestionado" },
+              { valor: "10+", label: "Años de experiencia" },
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-primary rounded-2xl p-6 text-center"
+              >
+                <p className="text-3xl font-black text-secondary mb-1">{stat.valor}</p>
+                <p className="text-primary-foreground/70 text-sm">{stat.label}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
