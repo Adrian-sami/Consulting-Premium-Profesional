@@ -5,6 +5,10 @@
     "rootDir": "src",
     "types": ["node"],
 
+    // ✅ CRITICAL FIX
+    "moduleResolution": "node",
+    "module": "NodeNext",
+
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   },
