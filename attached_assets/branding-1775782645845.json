@@ -1,0 +1,145 @@
+{
+  "colorScheme": "light",
+  "fonts": [
+    {
+      "family": "Inter",
+      "role": "body"
+    },
+    {
+      "family": "Roboto",
+      "role": "unknown"
+    }
+  ],
+  "colors": {
+    "primary": "#003047",
+    "secondary": "#2575FC",
+    "accent": "#FF6400",
+    "background": "#FFFFFF",
+    "textPrimary": "#FF6400",
+    "link": "#FF6400"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "Inter",
+      "heading": "Inter"
+    },
+    "fontStacks": {
+      "heading": [
+        "Roboto",
+        "sans-serif"
+      ],
+      "body": [
+        "Inter",
+        "sans-serif"
+      ],
+      "paragraph": [
+        "Roboto",
+        "sans-serif"
+      ]
+    },
+    "fontSizes": {
+      "h1": "69px",
+      "h2": "39px",
+      "body": "25px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 4,
+    "borderRadius": "4px"
+  },
+  "components": {
+    "input": {
+      "background": "#F8F9FB",
+      "textColor": "#777777",
+      "borderColor": "#F8F9FB",
+      "borderRadius": "0px",
+      "borderRadiusCorners": {
+        "topLeft": "0px",
+        "topRight": "0px",
+        "bottomRight": "0px",
+        "bottomLeft": "0px"
+      },
+      "shadow": "none"
+    },
+    "buttonPrimary": {
+      "background": "#FF6400",
+      "textColor": "#FFFFFF",
+      "borderRadius": "0px",
+      "borderRadiusCorners": {
+        "topLeft": "0px",
+        "topRight": "0px",
+        "bottomRight": "0px",
+        "bottomLeft": "0px"
+      },
+      "shadow": "none"
+    },
+    "buttonSecondary": {
+      "background": "#01304A",
+      "textColor": "#777777",
+      "borderRadius": "0px",
+      "borderRadiusCorners": {
+        "topLeft": "0px",
+        "topRight": "0px",
+        "bottomRight": "0px",
+        "bottomLeft": "0px"
+      },
+      "shadow": "none"
+    }
+  },
+  "images": {
+    "logo": "https://webkit.moxcreative.com/mortgavista/wp-content/uploads/sites/21/elementor/thumbs/MortgaVista_logo-q7u5a3ny49krnan6izb0jpd206x3938jn8c4miiqdc.png",
+    "favicon": null,
+    "ogImage": null,
+    "logoHref": "https://webkit.moxcreative.com/mortgavista",
+    "logoAlt": "MortgaVista_logo"
+  },
+  "__llm_logo_reasoning": {
+    "selectedIndex": 0,
+    "reasoning": "Selected #0 because it is visible, has a medium size, and the alt text matches the brand name 'MortgaVista'. It is the most prominent logo that aligns with the brand inferred from the page title and URL.",
+    "confidence": 0.85,
+    "source": "llm"
+  },
+  "__llm_button_reasoning": {
+    "primary": {
+      "index": 8,
+      "text": "Learn more",
+      "reasoning": "Button #2 has a vibrant orange background (#FF6400), which is a strong indicator of a primary call-to-action. The color is eye-catching and stands out against the page's light background, making it the most likely primary CTA."
+    },
+    "secondary": {
+      "index": 2,
+      "text": "Learn more",
+      "reasoning": "Button #0 has a different background color (#01304A) from the primary button and is less vibrant, making it suitable as a secondary CTA."
+    },
+    "confidence": 0.95
+  },
+  "personality": {
+    "tone": "professional",
+    "energy": "medium",
+    "targetAudience": "home buyers and real estate professionals"
+  },
+  "designSystem": {
+    "framework": "custom",
+    "componentLibrary": ""
+  },
+  "confidence": {
+    "buttons": 0.95,
+    "colors": 0.9,
+    "overall": 0.925
+  },
+  "__llm_metadata": {
+    "logoSelection": {
+      "llmCalled": true,
+      "llmSucceeded": true,
+      "finalSource": "llm",
+      "rawLogoSelection": {
+        "selectedLogoIndex": 0,
+        "selectedLogoReasoning": "Selected #0 because it is visible, has a medium size, and the alt text matches the brand name 'MortgaVista'. It is the most prominent logo that aligns with the brand inferred from the page title and URL.",
+        "confidence": 0.85
+      }
+    },
+    "buttonClassification": {
+      "llmCalled": true,
+      "llmSucceeded": true
+    }
+  }
+}
