@@ -145,7 +145,9 @@ function ContactModal({ onClose }: { onClose: () => void }) {
                   <option value="">Seleccione una opción...</option>
                   <option value="personas">Para mí / mi familia (Personas)</option>
                   <option value="empresas">Para mi negocio (Empresas)</option>
-                  <option value="ambos">Ambos</option>
+                  <option value="educacion">Educación Financiera para Empleados</option>
+                  <option value="publicaciones">Publicaciones / Ghostwriting</option>
+                  <option value="ambos">Ambos / Varios servicios</option>
                 </select>
               </div>
 

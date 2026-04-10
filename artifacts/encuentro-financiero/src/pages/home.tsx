@@ -94,7 +94,9 @@ function HeroForm() {
               <option value="" className="text-foreground">Seleccionar...</option>
               <option value="personas" className="text-foreground">Para mí / mi familia</option>
               <option value="empresas" className="text-foreground">Para mi negocio</option>
-              <option value="ambos" className="text-foreground">Ambos</option>
+              <option value="educacion" className="text-foreground">Educación Financiera para Empleados</option>
+              <option value="publicaciones" className="text-foreground">Publicaciones / Ghostwriting</option>
+              <option value="ambos" className="text-foreground">Ambos / Varios servicios</option>
             </select>
           </div>
           <button

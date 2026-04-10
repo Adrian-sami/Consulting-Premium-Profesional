@@ -444,6 +444,76 @@ export default function ServiciosPersonas() {
         </div>
       </section>
 
+      {/* ¿Para quién es? */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <p className="text-secondary font-semibold text-sm uppercase tracking-widest mb-3">¿Para quién es esta consultoría?</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Diseñada para personas como tú</h2>
+            <p className="text-muted-foreground">Si alguna de estas situaciones te representa, estás en el lugar correcto.</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {[
+              { titulo: "Nuevos en EE.UU.", desc: "Personas que acaban de llegar a los Estados Unidos y quieren integrarse al sistema financiero americano desde cero." },
+              { titulo: "Con deudas acumuladas", desc: "Familias con tarjetas de crédito, préstamos o deudas que sienten que no avanzan a pesar de trabajar duro." },
+              { titulo: "Sin historial crediticio", desc: "Personas sin crédito o con crédito dañado que necesitan reconstruir su perfil para acceder a oportunidades." },
+              { titulo: "Con metas de vivienda", desc: "Quienes sueñan con comprar su primera casa en EE.UU. y necesitan preparar su situación financiera para lograrlo." },
+              { titulo: "Sin plan de ahorro", desc: "Personas que ganan bien pero no logran ahorrar, y quieren crear un plan claro para su futuro y el de su familia." },
+              { titulo: "Buscando estabilidad", desc: "Familias que quieren proteger lo que han construido con esfuerzo y garantizar un futuro seguro para sus hijos." },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+                className="border-l-4 border-secondary bg-secondary/5 p-6 rounded-r-xl"
+              >
+                <h3 className="font-bold text-primary mb-2">{item.titulo}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Problemas que resolvemos */}
+      <section className="py-20 bg-primary text-primary-foreground">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <p className="text-secondary font-semibold text-sm uppercase tracking-widest mb-3">Problemas que resolvemos</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">¿Te identificas con alguno de estos?</h2>
+            <p className="text-primary-foreground/70">Estos son los desafíos más comunes que enfrentan nuestros clientes — y que resolvemos juntos.</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+            {[
+              "Vivo en EE.UU. hace años pero no entiendo cómo funciona el sistema financiero aquí.",
+              "Tengo deudas que siguen creciendo y no sé cómo salir de ese ciclo.",
+              "Mi crédito está dañado o nunca lo he construido y no puedo acceder a préstamos o hipotecas.",
+              "No tengo ahorros y no sé cómo empezar — cada mes el dinero se va sin saber a dónde.",
+              "No tengo un plan para proteger a mi familia si me pasa algo.",
+              "Pago demasiado en impuestos y no sé si estoy aprovechando todas las deducciones legales.",
+              "Quiero invertir pero no sé por dónde empezar ni en qué confiar.",
+              "Mis hijos son ciudadanos americanos pero no sé cómo planificar su futuro financiero.",
+            ].map((problema, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.07 }}
+                className="flex items-start gap-4 bg-white/5 border border-white/10 rounded-xl p-5"
+              >
+                <div className="w-7 h-7 bg-secondary rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                  <CheckCircle className="h-4 w-4 text-secondary-foreground" />
+                </div>
+                <p className="text-primary-foreground/90 text-sm leading-relaxed">{problema}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* VIDEO TESTIMONIAL */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">

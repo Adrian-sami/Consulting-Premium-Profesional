@@ -463,6 +463,76 @@ export default function ServiciosEmpresas() {
         </div>
       </section>
 
+      {/* ¿Para quién es? */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <p className="text-secondary font-semibold text-sm uppercase tracking-widest mb-3">¿Para quién es esta consultoría?</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Diseñada para empresarios como usted</h2>
+            <p className="text-muted-foreground">Si alguna de estas situaciones describe su negocio, estamos aquí para ayudarle.</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {[
+              { titulo: "Negocios en etapa inicial", desc: "Emprendedores que están lanzando su negocio y necesitan estructurarlo correctamente desde el principio para evitar errores costosos." },
+              { titulo: "Empresas estancadas", desc: "Negocios que funcionan pero no crecen — atrapados en el día a día sin una estrategia clara para escalar." },
+              { titulo: "Sin acceso a crédito", desc: "Empresas que necesitan capital para crecer pero no tienen el perfil crediticio ni la documentación para acceder a financiamiento." },
+              { titulo: "Con problemas fiscales", desc: "Propietarios que pagan más impuestos de lo necesario o que no tienen una estructura fiscal eficiente para su tipo de empresa." },
+              { titulo: "Con empleados latinos", desc: "Empresas que quieren ofrecer educación financiera a su equipo como beneficio diferenciador para retener y motivar talento." },
+              { titulo: "Buscando expansión", desc: "Negocios listos para abrir nuevas ubicaciones, contratar más personal o lanzar nuevos servicios y necesitan un plan sólido." },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+                className="border-l-4 border-secondary bg-secondary/5 p-6 rounded-r-xl"
+              >
+                <h3 className="font-bold text-primary mb-2">{item.titulo}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Problemas que resolvemos */}
+      <section className="py-20 bg-primary text-primary-foreground">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <p className="text-secondary font-semibold text-sm uppercase tracking-widest mb-3">Problemas que resolvemos</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">¿Su empresa enfrenta alguno de estos desafíos?</h2>
+            <p className="text-primary-foreground/70">Estos son los problemas más comunes que resolvemos para empresarios latinos en EE.UU.</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+            {[
+              "No tengo claridad sobre el flujo de caja real de mi empresa ni sé si soy rentable mes a mes.",
+              "Pago demasiado en impuestos y sospecho que no estoy aprovechando todas las deducciones legales.",
+              "Quiero acceder a crédito o financiamiento pero los bancos me rechazan o no sé cómo presentar mi empresa.",
+              "Mi negocio depende de muy pocos clientes y eso me genera una vulnerabilidad constante.",
+              "No tengo una estrategia clara para crecer — opero en modo reactivo y no puedo salir de eso.",
+              "Mis empleados tienen problemas financieros personales que afectan su productividad y mi empresa.",
+              "Quiero expandirme pero no sé si estoy listo financieramente ni cómo hacerlo sin arriesgar todo.",
+              "No tengo una separación clara entre mis finanzas personales y las de mi negocio.",
+            ].map((problema, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.07 }}
+                className="flex items-start gap-4 bg-white/5 border border-white/10 rounded-xl p-5"
+              >
+                <div className="w-7 h-7 bg-secondary rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                  <CheckCircle className="h-4 w-4 text-secondary-foreground" />
+                </div>
+                <p className="text-primary-foreground/90 text-sm leading-relaxed">{problema}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Servicios */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -636,6 +706,62 @@ export default function ServiciosEmpresas() {
                 <p className="text-primary-foreground/70 text-sm">{stat.label}</p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Educación Financiera para Empleados */}
+      <section className="py-20 bg-accent/10 border-y border-accent/20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <p className="text-secondary font-semibold text-sm uppercase tracking-widest mb-3">Módulo Especial</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6 leading-tight">
+                Educación Financiera para Empleados
+              </h2>
+              <p className="text-muted-foreground mb-6 leading-relaxed">
+                Ofrezca a su equipo talleres de educación financiera como un beneficio empresarial de alto impacto. Empleados con finanzas sanas son más productivos, comprometidos y leales a su empresa.
+              </p>
+              <p className="text-muted-foreground mb-8 leading-relaxed">
+                Este módulo está diseñado especialmente para empresas con equipos latinos en EE.UU. que quieren hacer la diferencia en la vida de sus colaboradores mientras fortalecen la cultura empresarial.
+              </p>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground hover:bg-secondary/90 font-semibold px-7 py-3.5 rounded-xl transition-colors"
+              >
+                <MessageCircle className="h-5 w-5" />
+                Consultar este módulo
+              </a>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-4"
+            >
+              {[
+                { titulo: "Taller: Cómo funciona el crédito en EE.UU.", desc: "Sus empleados aprenden a construir y proteger su historial crediticio para acceder a hipotecas, vehículos y financiamiento." },
+                { titulo: "Taller: Presupuesto y control de gastos", desc: "Herramientas prácticas para organizar el dinero, eliminar deudas y empezar a ahorrar — incluso con un salario modesto." },
+                { titulo: "Taller: Impuestos y beneficios en EE.UU.", desc: "Cómo entender el sistema de taxes, qué deducciones aplican y cómo maximizar los beneficios laborales disponibles." },
+                { titulo: "Taller: Inversión y retiro", desc: "Introducción al 401(k), IRA y opciones de inversión para construir patrimonio a largo plazo desde cualquier nivel de ingreso." },
+              ].map((taller, i) => (
+                <div key={i} className="flex items-start gap-4 bg-background border border-border rounded-xl p-5 shadow-sm">
+                  <div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="text-accent font-bold text-sm">{i + 1}</span>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-primary text-sm mb-1">{taller.titulo}</h4>
+                    <p className="text-muted-foreground text-xs leading-relaxed">{taller.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>
