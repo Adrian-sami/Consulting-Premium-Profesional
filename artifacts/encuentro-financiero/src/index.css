@@ -2,6 +2,22 @@
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
 
+@layer base {
+  body {
+    font-family: 'Inter', 'Fahkwang', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fahkwang', sans-serif;
+    letter-spacing: -0.01em;
+  }
+  .brand-font {
+    font-family: 'Fahkwang', sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -76,57 +92,60 @@
   --elevate-1: rgba(0,0,0, .03);
   --elevate-2: rgba(0,0,0, .08);
 
-  /* Cream Background, Navy Foreground */
-  --background: 40 33% 98%;
-  --foreground: 222 47% 11%;
+  /* Brand: White Background, Deep Navy Foreground */
+  --background: 0 0% 100%;
+  --foreground: 225 85% 13%;
   
-  --border: 214 32% 91%;
+  --border: 220 20% 90%;
   --card: 0 0% 100%;
-  --card-foreground: 222 47% 11%;
-  --card-border: 214 32% 91%;
+  --card-foreground: 225 85% 13%;
+  --card-border: 220 20% 90%;
 
   --sidebar: 0 0% 100%;
-  --sidebar-foreground: 222 47% 11%;
-  --sidebar-border: 214 32% 91%;
-  --sidebar-primary: 222 47% 11%;
-  --sidebar-primary-foreground: 40 33% 98%;
-  --sidebar-accent: 214 32% 91%;
-  --sidebar-accent-foreground: 222 47% 11%;
-  --sidebar-ring: 222 47% 11%;
+  --sidebar-foreground: 225 85% 13%;
+  --sidebar-border: 220 20% 90%;
+  --sidebar-primary: 225 85% 13%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 220 20% 95%;
+  --sidebar-accent-foreground: 225 85% 13%;
+  --sidebar-ring: 225 85% 13%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 222 47% 11%;
-  --popover-border: 214 32% 91%;
+  --popover-foreground: 225 85% 13%;
+  --popover-border: 220 20% 90%;
 
-  --primary: 222 47% 11%;
-  --primary-foreground: 40 33% 98%;
+  /* Brand Navy Blue #05143f */
+  --primary: 225 85% 13%;
+  --primary-foreground: 0 0% 100%;
   
-  /* Rich Gold */
-  --secondary: 43 74% 49%;
-  --secondary-foreground: 222 47% 11%;
+  /* Brand Orange #f25601 */
+  --secondary: 21 99% 48%;
+  --secondary-foreground: 0 0% 100%;
   
-  --muted: 210 40% 96%;
-  --muted-foreground: 215 16% 47%;
+  --muted: 220 20% 96%;
+  --muted-foreground: 220 10% 46%;
   
-  --accent: 210 40% 96%;
-  --accent-foreground: 222 47% 11%;
+  /* Brand Green for accents */
+  --accent: 138 64% 44%;
+  --accent-foreground: 0 0% 100%;
   
   --destructive: 0 84% 60%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive-foreground: 0 0% 100%;
 
-  --input: 214 32% 91%;
-  --ring: 222 47% 11%;
+  --input: 220 20% 91%;
+  --ring: 225 85% 13%;
   
-  --chart-1: 222 47% 11%;
-  --chart-2: 43 74% 49%;
-  --chart-3: 199 89% 48%;
-  --chart-4: 43 74% 66%;
-  --chart-5: 27 87% 67%;
+  --chart-1: 225 85% 13%;
+  --chart-2: 21 99% 48%;
+  --chart-3: 138 64% 44%;
+  --chart-4: 21 99% 65%;
+  --chart-5: 225 60% 40%;
 
-  --app-font-sans: 'Playfair Display', Georgia, serif;
-  --app-font-serif: Georgia, serif;
+  /* Brand Font: Fahkwang */
+  --app-font-sans: 'Fahkwang', 'Inter', sans-serif;
+  --app-font-serif: 'Fahkwang', sans-serif;
   --app-font-mono: Menlo, monospace;
-  --radius: 0.25rem;
+  --radius: 0.125rem;
   
   --shadow-2xs: 0px 2px 0px 0px hsl(var(--foreground) / 0.05);
   --shadow-xs: 0px 2px 0px 0px hsl(var(--foreground) / 0.05);

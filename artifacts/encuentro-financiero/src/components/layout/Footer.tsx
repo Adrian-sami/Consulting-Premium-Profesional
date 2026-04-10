@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Landmark, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 export function Footer() {
   return (
@@ -7,11 +7,22 @@ export function Footer() {
       <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <Landmark className="h-8 w-8 text-secondary" />
-              <span className="text-xl font-bold tracking-tight">
-                Encuentro Financiero
-              </span>
+            <div className="flex items-center gap-3">
+              {/* Brand Isotipo */}
+              <svg width="34" height="34" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
+                <rect width="36" height="36" fill="white" fillOpacity="0.1" />
+                <polygon points="6,30 18,6 30,30" fill="hsl(21,99%,48%)" opacity="0.9" />
+                <polygon points="6,30 18,14 30,30" fill="hsl(138,64%,44%)" opacity="0.7" />
+                <rect x="6" y="28" width="24" height="2" fill="hsl(21,99%,48%)" />
+              </svg>
+              <div className="flex flex-col leading-none">
+                <span className="font-black text-white tracking-[0.12em] uppercase text-sm" style={{ fontFamily: "'Fahkwang', sans-serif" }}>
+                  Encuentro
+                </span>
+                <span className="font-light text-secondary tracking-[0.15em] uppercase text-sm" style={{ fontFamily: "'Fahkwang', sans-serif" }}>
+                  Financiero
+                </span>
+              </div>
             </div>
             <p className="text-sm text-primary-foreground/80 max-w-xs">
               La firma líder en EE.UU. en consultoría financiera y empresarial que impulsa negocios y familias latinas hacia el éxito.
