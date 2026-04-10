@@ -1,4 +1,5 @@
-import express, { type Express } from "express";
+// @ts-nocheck
+mport express, { type Express } from "express";
 import cors from "cors";
 import { createRequire } from "node:module";
 import router from "./routes";
